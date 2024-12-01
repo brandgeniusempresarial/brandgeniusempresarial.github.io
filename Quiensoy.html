@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>QuienSoy</title>
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <style>
+            /* Estilo general */
+            body {
+                background-color: black;
+                color: white;
+                font-family: 'Libre Baskerville', serif;
+                margin: 0;
+                padding: 0;
+            }
+            .icono {
+                position: absolute; /* Esto las coloca en posiciones absolutas */
+                width: 200px;  /* Tamaño de las imágenes */
+                height: 200px;
+            }
+            .icono5 {
+                position: absolute; /* Esto las coloca en posiciones absolutas */
+                width: 200px;  /* Tamaño de las imágenes */
+                height: 200px;
+            }
+            .icono6 {
+                position: absolute; /* Esto las coloca en posiciones absolutas */
+                width: 200px;  /* Tamaño de las imágenes */
+                height: 200px;
+            }
+            /* Posiciones específicas para las imágenes */
+            .icono1 {
+                top:700px; /* A 20px desde la parte superior */
+                left: 100px; /* A 20px desde la izquierda */
+            }
+
+            .icono2 {
+                top: 700px;
+                left: 1600px;
+            }
+
+            .icono3 {
+                top: 1100px; /* A 50px desde la parte inferior */
+                left: 100px; /* A 50px desde la derecha */
+            }
+
+            .icono4 {
+                top: 1100px;
+                left: 1650px;
+            }
+            .icono5 {
+                top: 200px;
+                left: 400px;
+            }
+            .icono6 {
+                top: 200px;
+                left: 1350px;
+            }
+            /* Contenedor general centrado */
+            .content {
+                max-width: 80%;
+                margin: 0 auto;
+                padding: 20px;
+                text-align: center;
+            }
+
+            /* Estilo del encabezado */
+            .header {
+                position: relative;
+                text-align: center;
+                margin-bottom: 30px;
+            }
+
+            .header h1 {
+                font-size: 2.5rem;
+                margin: 0;
+            }
+            .header h3 {
+                font-size: 2.5rem;
+                margin: 0;
+            }
+            .header h4 {
+                font-size: 2.5rem;
+                margin: 0;
+            }
+            .header p {
+                margin: 0;
+            }
+
+            /*linea blanca*/
+
+            .header {
+                position: relative;
+                text-align: center;
+                padding: 50px;
+            }
+
+            /* Línea vertical ajustada */
+            .header::before {
+                content: '';
+                position: absolute;
+                top: 65%;  /* Ajusta la posición vertical de la línea */
+                left: 28%;   /* Posiciona la línea al borde izquierdo */
+                width: 60px;  /*  horizontal de la línea */
+                height: 8px;  /* Esto controla el grosor  */
+                background: white;
+                transform: rotate(90deg); /* Mantiene la inclinación de la línea */
+                z-index: 1;
+            }
+            /* Barra de navegación */
+            .navbar {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin: 20px 0;
+            }
+
+            .navbar a {
+                background-color: transparent;
+                color: white;
+                text-decoration: none;
+                padding: 10px 20px;
+                border: 2px solid white;
+                border-radius: 5px;
+                font-size: 1.2rem;
+                transition: background-color 0.3s;
+            }
+
+            .navbar a:hover {
+                background-color: white;
+                color: black;
+            }
+
+            /* Galería rotativa */
+            .rotating-gallery {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-wrap: wrap;
+                gap: 20px;
+                margin-top: 30px;
+            }
+
+            .rotating-gallery img {
+                width: 150px;
+                height: 150px;
+                border-radius: 10px;
+                cursor: pointer;
+                transition: transform 0.6s ease-in-out;
+            }
+
+            .rotating-gallery img:hover {
+                transform: rotateY(180deg);
+            }
+
+            /* Modal para imagen ampliada */
+            .image-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            .image-modal img {
+                max-width: 80%;
+                max-height: 80%;
+                object-fit: contain;
+                border-radius: 5px;
+            }
+
+            .close-btn {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                color: white;
+                font-size: 2rem;
+                text-decoration: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            .close-btn:hover {
+                color: red;
+            }
+
+            /* Texto centrado */
+            .text-block {
+                max-width: 1000px; /* Limita el ancho máximo del texto */
+                margin: 0 auto; /* Asegura que el bloque esté centrado horizontalmente */
+                color: white; /* Color del texto */
+                font-family: 'Libre Baskerville', serif; /* Fuente personalizada */
+                text-align: left; /* Alinea el texto hacia la derecha */
+                display: flex; /* Habilita flexbox */
+                justify-content: flex-end; /* Alinea el contenido hacia la derecha horizontalmente */
+                align-items: center; /* Centra el contenido verticalmente */
+                min-height: 100px; /* Ajusta la altura del contenedor para centrar verticalmente */
+                margin-top: 20px; /* Separación superior */
+            }
+            .navbar a {
+                color: white;
+                text-decoration: none;
+                padding: 10px 20px;
+                border: 1px solid white;
+                border-radius: 5px;
+            }
+            .navbar a:hover {
+                background-color: white;
+                color: black;
+            }
+            /* Estilo para las secciones */
+            section {
+                padding: 50px;
+                min-height: 500px;
+            }
+            #inicio {
+                background-color: #1a1a1a;
+            }
+            #galeria {
+                background-color: #2a2a2a;
+            }
+            #Quiensoy {
+                background-color: #3a3a3a;
+            }
+            #contacto {
+                background-color: #4a4a4a;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="content">
+            <!-- Encabezado -->
+            <div class="header">
+                <h1>Brand Genius</h1>
+                <h1>Alejandro Rodriguez Molina</h1>
+                <p>Ingeniero en software y productor AudioVisual Digital</p>
+            </div>
+
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\4.png" class="icono icono1" >
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\4.png" class="icono icono2" >
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\3.png" class="icono icono3" >
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\3.png" class="icono icono4" >
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\9.png" class="icono icono5" >
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\1.png" class="icono icono6" >
+
+
+            <div id="modal" class="image-modal" onclick="closeModal()">
+                <img id="modalImage" src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\4.png" >
+                <a href="#" class="close-btn" onclick="closeModal()">&times;</a>
+            </div>
+            <!-- Título principal -->
+            <h2>Quién Soy</h2>
+
+            <!-- Barra de navegación con botones -->
+            <div class="navbar">
+                <a href="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\public_html\Inicio.html">Inicio</a>
+                <a href="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\public_html\galeria.html">Galería</a>
+                <a href="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\public_html\Quiensoy.html">QuiénSoy</a>
+                <a href="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\public_html\Contactanos.html">Contáctanos</a>
+            </div>
+
+
+            <!-- Galería rotativa -->
+
+            <!-- Texto descriptivo -->
+            <h3>¡Bienvenidos a mi página web!</h3>
+            <p>Soy Nicolás Alejandro Rodríguez Molina </p>
+            <div class="text-block">  
+                <p>Un apasionado emprendedor de 24 años, comprometido con la innovación
+                    y el impacto positivo en el mundo a través de la tecnología, el diseño y la creatividad. </p>
+            </div>
+            <h4>¿Quién soy? </h4>
+
+            <div class="text-block"> 
+                <p> Soy Ingeniero de Software, orgullosamente egresado de la Universidad Iberoamericana, con experiencia 
+                    y habilidades que abarcan diversas disciplinas:Producción Audiovisual Profesional: Capturando historias y emociones a través del lente.
+                    Diseño y Edición de Contenidos: Creando experiencias visuales únicas que inspiran.
+                    Modelado 3D: Dando vida a conceptos mediante la creación de mundos tridimensionales </p>
+            </div>
+
+            <!-- Galería rotativa -->
+            <div class="rotating-gallery">
+                <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\fotos\2.png" onclick="openModal(this)">
+                <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\fotos\Captura de pantalla 2024-11-22 122355.png" onclick="openModal(this)">
+                <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\fotos\4.png" onclick="openModal(this)">
+                <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\fotos\2.jpeg" onclick="openModal(this)">
+                <!-- Modal para imagen ampliada -->
+                <div id="modal" class="image-modal" onclick="closeModal()">
+                    <img id="modalImage" src="" alt="Imagen Ampliada">
+                    <a href="#" class="close-btn" onclick="closeModal()">&times;</a>
+                </div>
+
+            </div>
+            <h4>Mi empresa </h4>
+            <div class="text-block"> 
+                <p> Fundé una empresa líder en el desarrollo de proyectos relacionados con:
+                    Software de última generación.
+                    Fotografía profesional y artística.
+                    Edición y producción audiovisual de alto impacto.
+                    Diseño creativo e innovador.
+                    El objetivo principal de nuestra empresa es potenciar el talento y la tecnología para brindar 
+                    soluciones integrales que marquen la diferencia en un mundo competitivo y en constante evolución. </p>
+            </div>
+            <h4>Mi misión como profesional </h4>
+            <div class="text-block"> 
+                <p> Mi propósito es contribuir al desarrollo tecnológico y creativo de la sociedad, integrando mis conocimientos y experiencia para:
+                    Aportar nuevas tecnologías en software y diseño que resuelvan problemas reales.
+                    Generar contenido de valor que fomente el aprendizaje, la inspiración y la innovación.
+                    Participar en proyectos de investigación que impulsen la transformación digital y creativa. </p>
+            </div>
+            <h4>¿Por qué elegir trabajar conmigo? </h4>
+            <div class="text-block"> 
+                <p>Pasión y compromiso con cada proyecto.
+                    Enfoque multidisciplinario: Uniendo tecnología, arte y estrategia.
+                    Visión de futuro: Propuestas diseñadas para sobresalir en el mercado global.
+                    Gracias por visitar mi página web. Te invito a explorar mis proyectos y a unirte en el camino para crear
+                    algo extraordinario juntos. ¡Estoy aquí para transformar ideas en realidad!Contáctame y trabajemos juntos.  </p>
+            </div>
+            <script>
+                // Función para abrir la imagen en el modal
+                function openModal(imgElement) {
+                    const modal = document.getElementById('modal');
+                    const modalImage = document.getElementById('modalImage');
+                    modalImage.src = imgElement.src; // Poner la misma imagen en el modal
+                    modal.style.display = 'flex'; // Mostrar el modal
+                }
+
+                // Función para cerrar el modal
+                function closeModal() {
+                    const modal = document.getElementById('modal');
+                    modal.style.display = 'none'; // Ocultar el modal
+                }
+            </script>
+    </body>
+</html>

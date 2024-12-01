@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Inicio</title>
+        <!-- Incluir la tipografía Libre Baskerville desde Google Fonts -->
+        <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap" rel="stylesheet">
+        <style>
+            /* Fondo negro y texto blanco */
+            body {
+                background-color: black;
+                color: white;
+                font-family: 'Libre Baskerville', serif;
+                margin: 0;
+                padding: 0;
+                position: relative;
+            }
+            .icono {
+                position: absolute; /* Esto las coloca en posiciones absolutas */
+                width: 200px;  /* Tamaño de las imágenes */
+                height: 200px;
+            }
+
+            /* Posiciones específicas para las imágenes */
+            .icono1 {
+                top:2000px; /* A 20px desde la parte superior */
+                left: 200px; /* A 20px desde la izquierda */
+            }
+
+            .icono2 {
+                top: 2000px;
+                left: 1600px;
+            }
+
+            .icono3 {
+                top: 2800px; /* A 50px desde la parte inferior */
+                left: 200px; /* A 50px desde la derecha */
+            }
+
+            .icono4 {
+                top: 2800px;
+                left: 1600px;
+            }
+            .icono5 {
+                top: 300px;
+                left: 400px;
+            }
+            /* Contenedor del video */
+            .video-container {
+                width: 50%; /* El contenedor ocupará el 80% del ancho de la ventana */
+                max-width: 300px; /* Tamaño máximo  */
+                height: auto; /* Ajusta la altura automáticamente */
+                margin-left: 30%;
+            }
+
+            /* Estilo para el iframe (el video) */
+            iframe {
+                width: 50%; /* Hace que el video ocupe el 100% del ancho del contenedor */
+                height: 400px; /* Establece una altura fija para el video */
+                border: none; /* Elimina el borde del video */
+                margin-left: 30%;
+            }
+            .custom-text {
+                font-family: 'Libre Baskerville', serif; /* Cambia esto al tipo de letra que quieras */
+                font-style: italic; /* Aplica estilo cursivo */
+                text-align: center; /* Centra el texto */
+                color: white; /* Color del texto */
+                margin-top: 20px; /* Agrega espacio arriba */
+                font-size: 1.5rem; /* Tamaño del texto */
+            }
+            .text-block {
+                max-width: 600px; /* Anchura máxima del bloque */
+                margin: 20px auto; /* Centra el bloque horizontalmente y agrega margen superior/inferior */
+                padding: 20px; /* Espaciado interno */
+                text-align: justify; /* Justifica el texto */
+                border-radius: 10px; /* Bordes redondeados */
+                color: white; /* Color del texto */
+                font-family: 'Libre Baskerville', serif; /* Fuente personalizada */
+
+            }
+
+            /* Estilo para la parte superior (nombre y línea diagonal) */
+            .header {
+                position: relative;
+                text-align: center;
+                padding: 50px;
+            }
+            /*linea blanca*/
+
+            .header {
+                position: relative;
+                text-align: center;
+                padding: 50px;
+            }
+
+            /* Línea vertical ajustada */
+            .header::before {
+                content: '';
+                position: absolute;
+                top: 60%;  /* Ajusta la posición vertical de la línea */
+                left: 35%;   /* Posiciona la línea al borde izquierdo */
+                width: 75px;  /*  horizontal de la línea */
+                height: 8px;  /* Esto controla el grosor  */
+                background: white;
+                transform: rotate(90deg); /* Mantiene la inclinación de la línea */
+                z-index: 1;
+            }
+
+
+
+            /* Estilo para los botones de navegación */
+            .navbar {
+                display: flex;
+                justify-content: center;
+                gap: 20px;
+                margin-top: 30px;
+            }
+
+            .navbar a {
+                background-color: transparent;
+                color: white;
+                text-decoration: none;
+                padding: 10px 20px;
+                border: 2px solid white;
+                border-radius: 5px;
+                font-size: 1.2rem;
+                transition: background-color 0.3s;
+            }
+
+            .navbar a:hover {
+                background-color: white;
+                color: black;
+            }
+
+            /* Estilo para la galería de fotos */
+            .gallery {
+                display: flex;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+                padding: 20px 0;
+            }
+            .gallery img {
+                max-width: 100%; /* Asegura que las imágenes no excedan su contenedor */
+                height: auto; /* Mantiene la proporción de las imágenes */
+                max-height: 200px; /* Limita la altura máxima */
+                object-fit: contain; /* Mantiene la proporción de la imagen */
+                border-radius: 5px;
+                cursor: pointer;
+                transition: transform 0.3s;
+            }
+
+            .gallery img:hover {
+                transform: scale(1.05);
+            }
+
+            /* Modal para mostrar imagen ampliada */
+            .image-modal {
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.9);
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            }
+
+            .image-modal img {
+                width: 600px; /* Ancho fijo para la imagen ampliada */
+                height: 400px; /* Altura fija para la imagen ampliada */
+                object-fit: cover; /* Ajusta la imagen para que se adapte al tamaño fijo */
+                border-radius: 5px;
+            }
+            .image-modal img {
+                max-width: 90%; /* La imagen no superará el 90% del ancho de la ventana */
+                max-height: 90%; /* La imagen no superará el 90% del alto de la ventana */
+                object-fit: contain; /* Asegura que la imagen mantenga su proporción */
+                border-radius: 5px;
+            }
+
+
+            .close-btn {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                color: white;
+                font-size: 2rem;
+                text-decoration: none;
+                background: none;
+                border: none;
+                cursor: pointer;
+            }
+
+            .close-btn:hover {
+                color: red;
+            }
+            .navbar a {
+                color: white;
+                text-decoration: none;
+                padding: 10px 20px;
+                border: 1px solid white;
+                border-radius: 5px;
+            }
+            .navbar a:hover {
+                background-color: white;
+                color: black;
+            }
+            /* Estilo para las secciones */
+            section {
+                padding: 50px;
+                min-height: 500px;
+            }
+            #inicio {
+                background-color: #1a1a1a;
+            }
+            #galeria {
+                background-color: #2a2a2a;
+            }
+            #quien-soy {
+                background-color: #3a3a3a;
+            }
+            #contacto {
+                background-color: #4a4a4a;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!-- Parte superior con nombre y línea diagonal -->
+        <div class="header">
+            <h1>Brand Genius</h1>
+            <h1>Alejandro Rodriguez Molina</h1>
+            <p>Ingeniero en software y productor AudioVisual Digital</p>
+        </div>
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\1.png" style="width: 150px;
+             margin-top: -1000px;
+             margin-left: 10% ;">
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\2.png" style="width: 180px;
+             margin-top: -500px   ;
+             margin-left: 87% ;">
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\8.png" style="width: 250px;
+             margin-top: -500px   ;
+             margin-left: 43% ;">
+
+        <!-- Barra de navegación con botones -->
+        <div class="navbar">
+            <a href="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\public_html\Inicio.html">Inicio</a>
+            <a href="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\public_html\galeria.html">Galería</a>
+            <a href="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\public_html\Quiensoy.html">Quién Soy</a>
+            <a href="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\public_html\Contactanos.html">Contáctanos</a>
+        </div>
+
+        <!-- Galería de fotos -->
+
+
+    <body>
+
+        <h1 style="text-align: center;">primera vista </h1>
+
+        <!-- Galería -->
+        <div class="gallery">
+
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\fotos\IMG_0335~2.JPG" onclick="openModal(this)">
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\fotos\IMG_0157.JPG" onclick="openModal(this)">
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\fotos\IMG_0252.JPG" onclick="openModal(this)">
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\fotos\IMG_0362.JPG" onclick="openModal(this)">
+            <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\fotos\IMG_20240619_113504_337.jpg" onclick="openModal(this)">
+
+        </div>
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\4.png" class="icono icono1" >
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\4.png" class="icono icono2" >
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\3.png" class="icono icono3" >
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\3.png" class="icono icono4" >
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\9.png" class="icono icono5" >
+        <div class="custom-text">Sigue este y más proyectos</div>
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\5.png" style="width: 100px;
+             margin-top: -500px   ;
+             margin-left: 12% ;">
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\5.png" style="width: 100px;
+             margin-top: -500px   ;
+             margin-left: 87% ;">
+        <div class="text-block">
+            <p>En 2020, durante la pandemia se presentó la oportunidad de participar en un concurso nacional llamado Sena Soft. Una gran experiencia llena de enseñanzas y logros.</p>
+            <p>Desarrollando un vídeo en el cual muestra la realidad en la que están las instalaciones sin sus estudiantes. También vemos cómo un profesor no se da por vencido para impartir sus conocimientos uniendo a los estudiantes mediante la virtualidad.</p>
+        </div>
+        <iframe width="560"  height="315" src="https://www.youtube.com/embed/sO-U6xDbdDE?si=KtTfDrwj_8hCEPzI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\3.png" style="width: 100px;
+             margin-top: 20px   ;
+             margin-left: 87% ;">
+        <img src="C:\Users\PC'S GAMING\Documents\NetBeansProjects\BrandGeniusPortafolio\iconografia\3.png" style="width: 100px;
+             margin-top: -45px   ;
+             margin-left: 12% ;">
+        <div class="text-block">
+            <p>en un rayo de esperanza, en el sena soft tube que hacer el pitch de presentación del proyecto, su escritura, video y montaje. <p>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/XoZv6c0ykBo?si=pSwLlDIO1Q--a2Rf" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="text-block">
+                <p>también uno de los proyectos que realizamos en conjunto a compañeros fue un video musical llamado música en el aire, cuenta la historia del cantante  <p>
+                <p>que se va de su casa a temprana edad, muchos años después que regresa no encuentra nada ni a nadie, lo cual le causa mucho dolor y escribe esta hermosa canción.<p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/f--9K1wDA-Q?si=eReFkRTPd7dDiHGP" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+
+
+            <div class="text-block">
+                <p>otro de mis proyectos fue el realizar el detras de camaras de música en el aire desde su planeación a su desarrollo con su edición correspondiente.<p>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/nM8uuR3QlEA?si=pgLuA0yVCVnNQNzJ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+
+
+                    <!-- Modal para imagen ampliada -->
+                <div id="modal" class="image-modal" onclick="closeModal()">
+                    <img id="modalImage" src="" alt="Imagen Ampliada">
+                    <a href="#" class="close-btn" onclick="closeModal()">&times;</a>
+
+                </div>
+
+                <script>
+                    // Función para abrir la imagen en el modal
+                    function openModal(imgElement) {
+                        const modal = document.getElementById('modal');
+                        const modalImage = document.getElementById('modalImage');
+                        modalImage.src = imgElement.src; // Poner la misma imagen en el modal
+                        modal.style.display = 'flex'; // Mostrar el modal
+                    }
+
+                    // Función para cerrar el modal
+                    function closeModal() {
+                        const modal = document.getElementById('modal');
+                        modal.style.display = 'none'; // Ocultar el modal
+                    }
+                </script>
+
+                </body>
+                </html>
